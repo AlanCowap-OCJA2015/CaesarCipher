@@ -1,10 +1,12 @@
 /**
- * App to demonstrate how to initialize and populate an array.
+ * 
  */
 package com.github.cbpos1989.example;
 
 /**
- * @author cbpos1989
+ * App to demonstrate how to initialise and populate an array.
+ * 
+ * @author Colm O'Sullivan
  *
  */
 import java.util.Scanner;
@@ -36,9 +38,6 @@ public class ArrayApp{
 		//System.out.println("Working");
 
 		int[] scores = new int[arrSize];
-		
-		
-		
 		
 		for (int i = 0; i < scores.length; ++i) {
 			

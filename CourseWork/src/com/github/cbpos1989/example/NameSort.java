@@ -18,6 +18,7 @@ import java.util.Random;
 public class NameSort {
 	ArrayList<String> nameList = new ArrayList<String>();
 	File nameRandom;
+	File nameSorted;
 	
 	public static void main(String[] args){
 		//System.out.println("Working");
@@ -33,12 +34,14 @@ public class NameSort {
 	}
 	
 	void populateArrayList(){
+		
+		
 		for(nameEnum ne: nameEnum.values()){
 			String str = ne.toString();
 			nameList.add(str);
 		}
 		
-		Collections.sort(nameList);
+		
 		/*
 		System.out.println("PopulateArray");
 		
@@ -46,6 +49,10 @@ public class NameSort {
 			System.out.println(s);
 		}*/
 		
+	}
+	
+	void sortArrayList(){
+		Collections.sort(nameList);
 	}
 	
 	void createFile(){
@@ -57,9 +64,19 @@ public class NameSort {
 			nameRandom.createNewFile();
 			
 			if (nameRandom.exists()) {
-				System.out.println("File Created");
-				writeFile();
-				readFile();
+				System.out.println("---File namerandom Created---");
+				writeFile(nameRandom);
+				readFile(nameRandom);
+			}
+			
+			nameSorted = new File(myDir, "namesorted.txt");
+			nameSorted.createNewFile();
+			
+			if (nameSorted.exists()) {
+				System.out.println("---File namesorted Created---");
+				sortArrayList();
+				writeFile(nameSorted);
+				readFile(nameSorted);
 			}
 			
 		} catch (IOException ioe) {
@@ -67,16 +84,13 @@ public class NameSort {
 		}
 	}
 	
-	void writeFile(){
+	void writeFile(File fileName){
 		try{
-			FileWriter fw = new FileWriter(nameRandom);
+			FileWriter fw = new FileWriter(fileName);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			
-			
 			for(String s: nameList){
-				//String str = ne.toString();
-				bw.write(s + ",");
+				bw.write(s + "\n");
 			}
 			
 			bw.flush();
@@ -88,13 +102,13 @@ public class NameSort {
 		}
 	}
 	
-	void readFile(){
+	void readFile(File fileName){
 		try{
-			FileReader fr = new FileReader(nameRandom);
+			FileReader fr = new FileReader(fileName);
 			BufferedReader br = new BufferedReader(fr);
 			
 			String reader;
-			System.out.println("Reader");
+			//System.out.println("Reader");
 			
 			while ((reader = br.readLine())!= null) {
 				System.out.println(reader);

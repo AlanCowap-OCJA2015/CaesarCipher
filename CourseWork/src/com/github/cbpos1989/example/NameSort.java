@@ -12,22 +12,41 @@ package com.github.cbpos1989.example;
  */
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class NameSort {
-	ArrayList<nameEnum> nameList = new ArrayList<nameEnum>();
+	ArrayList<String> nameList = new ArrayList<String>();
 	File nameRandom;
 	
 	public static void main(String[] args){
 		//System.out.println("Working");
 		
 		NameSort ns = new NameSort();
-		ns.createFile();
 		
-		for(nameEnum s: nameEnum.values())
-			System.out.print(s + " ");
+		ns.populateArrayList();
+		
+		if(!ns.nameList.isEmpty()){
+			ns.createFile();
+		}
+		
 	}
 	
+	void populateArrayList(){
+		for(nameEnum ne: nameEnum.values()){
+			String str = ne.toString();
+			nameList.add(str);
+		}
+		
+		Collections.sort(nameList);
+		/*
+		System.out.println("PopulateArray");
+		
+		for(String s: nameList){
+			System.out.println(s);
+		}*/
+		
+	}
 	
 	void createFile(){
 		try{
@@ -40,6 +59,7 @@ public class NameSort {
 			if (nameRandom.exists()) {
 				System.out.println("File Created");
 				writeFile();
+				readFile();
 			}
 			
 		} catch (IOException ioe) {
@@ -52,9 +72,11 @@ public class NameSort {
 			FileWriter fw = new FileWriter(nameRandom);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			for(nameEnum ne: nameEnum.values()){
-				String str = ne.toString();
-				bw.write(str + ",");
+			
+			
+			for(String s: nameList){
+				//String str = ne.toString();
+				bw.write(s + ",");
 			}
 			
 			bw.flush();
@@ -63,6 +85,24 @@ public class NameSort {
 			
 		} catch (IOException ioe) {
 			System.out.println("Didn't Write File");
+		}
+	}
+	
+	void readFile(){
+		try{
+			FileReader fr = new FileReader(nameRandom);
+			BufferedReader br = new BufferedReader(fr);
+			
+			String reader;
+			System.out.println("Reader");
+			
+			while ((reader = br.readLine())!= null) {
+				System.out.println(reader);
+			}
+			br.close();
+			
+		} catch (IOException ioe) {
+			System.out.println("Didn't read file");
 		}
 	}
 }

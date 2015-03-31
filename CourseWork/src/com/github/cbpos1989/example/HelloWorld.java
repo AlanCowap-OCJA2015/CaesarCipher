@@ -1,11 +1,13 @@
-package com.example.e;
+package com.github.cbpos1989.example;
 
 /**
  * 
  */
 
 /**
- * @author Student testing once more and againhjfhfhfhfhf
+ * Hello World class.
+ * 
+ * @author Colm O'Sullivan
  */
 public class HelloWorld {
 

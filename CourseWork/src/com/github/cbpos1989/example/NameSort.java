@@ -17,8 +17,10 @@ import java.util.Random;
 
 public class NameSort {
 	ArrayList<String> nameList = new ArrayList<String>();
+	ArrayList<String> pickedList = new ArrayList<String>();
 	File nameRandom;
 	File nameSorted;
+	Random rnd = new Random();
 	
 	public static void main(String[] args){
 		//System.out.println("Working");
@@ -33,6 +35,10 @@ public class NameSort {
 		
 	}
 	
+	int randomNumber(){
+		return rnd.nextInt(nameList.size()-1);
+	}
+	
 	void populateArrayList(){
 		
 		
@@ -41,23 +47,36 @@ public class NameSort {
 			nameList.add(str);
 		}
 		
+		for(int i = 0; i < 15;){
+			int idx = randomNumber();
+			
+			if (nameList.get(idx) != null) {
+				pickedList.add(i, nameList.get(idx));
+				nameList.remove(idx);
+				++i;
+			} else {
+				continue;
+			}
+			
+		}
 		
-		/*
-		System.out.println("PopulateArray");
 		
-		for(String s: nameList){
+		/*System.out.println("PickedArray");
+		
+		for(String s: pickedList){
 			System.out.println(s);
 		}*/
 		
 	}
 	
 	void sortArrayList(){
-		Collections.sort(nameList);
+		Collections.sort(pickedList);
 	}
 	
 	void createFile(){
 		try{
-			File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
+			//File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
+			File myDir = new File("/Users/student/Desktop/Test_Dir");
 			myDir.mkdir();
 			
 			nameRandom = new File(myDir, "namerandom.txt");
@@ -89,7 +108,7 @@ public class NameSort {
 			FileWriter fw = new FileWriter(fileName);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			for(String s: nameList){
+			for(String s: pickedList){
 				bw.write(s + "\n");
 			}
 			

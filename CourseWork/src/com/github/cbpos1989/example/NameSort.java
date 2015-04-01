@@ -16,31 +16,38 @@ import java.util.Collections;
 import java.util.Random;
 
 public class NameSort {
-	ArrayList<String> nameList = new ArrayList<String>();
-	ArrayList<String> pickedList = new ArrayList<String>();
-	File nameRandom;
-	File nameSorted;
-	Random rnd = new Random();
+	private ArrayList<String> nameList = new ArrayList<String>();
+	private ArrayList<String> pickedList = new ArrayList<String>();
+	private Random rnd = new Random();
+	private final String RND_FILE_NAME = "namerandom.txt";
+	private final String SRT_FILE_NAME = "namesorted.txt";
 	
 	public static void main(String[] args){
 		//System.out.println("Working");
 		
 		NameSort ns = new NameSort();
 		
-		ns.populateArrayList();
+		ns.intializeApp();
 		
-		if(!ns.nameList.isEmpty()){
-			ns.createFile();
+		
+	}
+	
+	void intializeApp(){
+		populateArrayList();
+		
+		if(!pickedList.isEmpty()){
+			createFile(RND_FILE_NAME);
+			sortArrayList(pickedList);
+			createFile(SRT_FILE_NAME);
 		}
-		
 	}
 	
 	int randomNumber(){
 		return rnd.nextInt(nameList.size()-1);
 	}
 	
+	//Populates two ArrayLists one with all enum values the other with 15 random
 	void populateArrayList(){
-		
 		
 		for(nameEnum ne: nameEnum.values()){
 			String str = ne.toString();
@@ -69,46 +76,36 @@ public class NameSort {
 		
 	}
 	
-	void sortArrayList(){
-		Collections.sort(pickedList);
+	void sortArrayList(ArrayList<String> list){
+		Collections.sort(list);
 	}
 	
-	void createFile(){
+	
+	void createFile(String filename){
 		try{
-			//File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
-			File myDir = new File("/Users/student/Desktop/Test_Dir");
+			File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
+			//File myDir = new File("/Users/student/Desktop/Test_Dir");
 			myDir.mkdir();
 			
-			nameRandom = new File(myDir, "namerandom.txt");
-			nameRandom.createNewFile();
+			File tempFile = new File(myDir, filename);
+			tempFile.createNewFile();
 			
-			if (nameRandom.exists()) {
-				System.out.println("---File namerandom Created---");
-				writeFile(nameRandom);
-				readFile(nameRandom);
-			}
-			
-			nameSorted = new File(myDir, "namesorted.txt");
-			nameSorted.createNewFile();
-			
-			if (nameSorted.exists()) {
-				System.out.println("---File namesorted Created---");
-				sortArrayList();
-				writeFile(nameSorted);
-				readFile(nameSorted);
-			}
-			
+			if (tempFile.exists()) {
+				System.out.println("---File " + filename + " Created---");
+				writeFile(tempFile, pickedList);
+				readFile(tempFile);
+			}	
 		} catch (IOException ioe) {
 			System.out.println("No File Created");
 		}
 	}
 	
-	void writeFile(File fileName){
+	void writeFile(File fileName, ArrayList<String> list){
 		try{
 			FileWriter fw = new FileWriter(fileName);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			for(String s: pickedList){
+			for(String s: list){
 				bw.write(s + "\n");
 			}
 			

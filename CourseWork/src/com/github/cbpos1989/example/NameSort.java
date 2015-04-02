@@ -14,13 +14,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 public class NameSort {
 	private ArrayList<String> nameList = new ArrayList<String>();
 	private ArrayList<String> pickedList = new ArrayList<String>();
 	private Random rnd = new Random();
+	private String userDir = null;
 	private final String RND_FILE_NAME = "namerandom.txt";
 	private final String SRT_FILE_NAME = "namesorted.txt";
+	private Scanner scn;
 	
 	public static void main(String[] args){
 		//System.out.println("Working");
@@ -30,15 +33,20 @@ public class NameSort {
 		ns.intializeApp();
 		
 		
+		
 	}
 	
 	void intializeApp(){
 		populateArrayList();
 		
+		scn = new Scanner(System.in);
+		System.out.print("Enter Directory Path: ");
+		userDir = scn.nextLine();
+		
 		if(!pickedList.isEmpty()){
-			createFile(RND_FILE_NAME);
+			createFile(RND_FILE_NAME, userDir);
 			sortArrayList(pickedList);
-			createFile(SRT_FILE_NAME);
+			createFile(SRT_FILE_NAME, userDir);
 		}
 	}
 	
@@ -81,10 +89,10 @@ public class NameSort {
 	}
 	
 	
-	void createFile(String filename){
+	void createFile(String filename, String userDir){
 		try{
-			File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
-			//File myDir = new File("/Users/student/Desktop/Test_Dir");
+			//File myDir = new File("/Users/cbpos1989/Desktop/Test_Dir");
+			File myDir = new File(userDir);
 			myDir.mkdir();
 			
 			File tempFile = new File(myDir, filename);

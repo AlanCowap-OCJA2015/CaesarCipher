@@ -55,7 +55,7 @@ public class ThreadApp {
 			threadMessage("Still Waiting...");
 			t.join(1000);
 			if(((System.currentTimeMillis() - startTime) < patience) && t.isAlive()){
-				threadMessage("Tired of waitinf");
+				threadMessage("Tired of waiting");
 				t.interrupt();
 				t.join();
 			}

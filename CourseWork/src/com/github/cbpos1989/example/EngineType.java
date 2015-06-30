@@ -15,6 +15,6 @@ public enum EngineType {
 	}
 	
 	public String toString(){
-		return super.toString() + " Engine Power: " + this.power + " Fuel Capacity: "+ this.fuelCapacity;
+		return super.toString() + " Engine Power(Watts): " + this.power + " Fuel Capacity(Litres): "+ this.fuelCapacity;
 	}
 }

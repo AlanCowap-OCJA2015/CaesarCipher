@@ -10,8 +10,15 @@ package com.github.cbpos1989.example;
 public class LawnMower {
 	//State
 	private boolean engineOn;
-	private enum engineType{PETROL, ELECTRIC, HYBRID, NONE};
 	private String mowerColor; 
+	private EngineType engine;
+	
+	public LawnMower(EngineType engine, String mowerColor){
+		this.engineOn = false;
+		this.engine = engine;
+		this.mowerColor = mowerColor;
+	}
+	
 	
 	//Behaviour
 	public void turnEngineOn(){
@@ -28,5 +35,13 @@ public class LawnMower {
 		} else {
 			return "On";
 		}
+	}
+	
+	public EngineType getEngineType(){
+		return engine;
+	}
+	
+	public String getColor(){
+		return mowerColor;
 	}
 }

@@ -19,6 +19,7 @@ public class ArrayApp{
 	private int maxValue = 0;
 	private Scanner scan;
 	
+	
 
 	public static void main(String[] args){
 		//System.out.println("Working");
@@ -29,7 +30,7 @@ public class ArrayApp{
 
 	private int randomGenerator(){
 		Random rand = new Random();
-		return rand.nextInt(101);
+		return rand.nextInt(100);
 	}
 	
 	void inputData(){
@@ -39,17 +40,27 @@ public class ArrayApp{
 		arraySize = Integer.parseInt(arraySizeInput);
 	} 
 	
+	
 	void creatNewArray(int arrSize){
 		//System.out.println("Working");
 
 		int[] scores = new int[arrSize];
+		//int[] scores = {10,11,10,9,9,9,9,10,11,12,13,9};
+		int mode = 0;
+		int counter = 0;
+		int temp = 0;
 		
 		for (int i = 0; i < scores.length; ++i) {
 			
-			scores[i] = (randomGenerator());
+			scores[i] = randomGenerator() +1;
 			System.out.print(scores[i] + " ");
-
 			scoresTotal = scores[i] + scoresTotal;
+			temp = findMode(scores,scores[i]);
+			
+			if(temp > counter){
+				counter = temp;
+				mode = scores[i];
+			}
 			
 		}
 		
@@ -77,8 +88,20 @@ public class ArrayApp{
 		System.out.println("\nMean number of array: " + meanNumber);
 		System.out.println("Smallest number in array: " + minNumber);
 		System.out.println("Largest number in array: " + maxNumber);
+		System.out.println("Mode number in array: " + mode);
 		System.out.println("Total number: " + scoresTotal);
 	
+	}
+	
+	int findMode(int[] array, int value){
+		int counter = 0;
+		for(int i = 0; i < array.length; ++i){
+			if(value == array[i]){
+				counter++;
+			}
+		}
+		
+		return counter;
 	}
 
 }

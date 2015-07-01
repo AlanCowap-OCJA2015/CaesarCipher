@@ -20,8 +20,16 @@ public class PhoneApp {
 	}
 	
 	void printPhoneDetails(){
+		float screenSizeTotal = 0;
+		int memoryCapacityTotal = 0;
+		
 		for(Phone p : phones){
 			System.out.println(p.toString());
+			screenSizeTotal += p.getScreenSize();
+			memoryCapacityTotal += p.getMemoryCapacity();
 		}
+		
+		System.out.println("Total Screensize: " + screenSizeTotal);
+		System.out.println("Total Memory Capacity: " + memoryCapacityTotal);
 	}
 }

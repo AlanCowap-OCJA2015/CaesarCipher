@@ -14,6 +14,14 @@ public class Phone {
 		
 	}
 	
+	public float getScreenSize(){
+		return this.screenSize;
+	}
+	
+	public int getMemoryCapacity(){
+		return this.memoryCapacity;
+	}
+	
 	public String toString(){
 		return "Manufacturer: " + this.manufacturer + "\nModel: "+ this.model
 				+ "\nScreensize: " + this.screenSize + "\nMemory Capacity: " + this.memoryCapacity + "\n";

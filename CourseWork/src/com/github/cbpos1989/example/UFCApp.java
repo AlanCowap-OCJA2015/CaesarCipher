@@ -50,8 +50,19 @@ public class UFCApp {
 	
 	void checkWeight(float userWeight){
 		//System.out.println(userWeight);
+		String output = null;
 		if(userWeight > 265 || userWeight < 145){
-			
+			System.out.println("Your are not eligible to fight in any category");
+		} else if (userWeight > 205) {
+			System.out.println("Your are eligible to fight in the Heavyweight category");
+		} else if (userWeight > 185) {
+			System.out.println("Your are eligible to fight in the Light Heavyweight category");
+		} else if (userWeight > 170) {
+			System.out.println("Your are eligible to fight in the Middleweight category");
+		} else if (userWeight > 155) {
+			System.out.println("Your are eligible to fight in the Welterweight category");
+		} else {
+			System.out.println("Your are eligible to fight in the Lightweight category");
 		}
 	}
 

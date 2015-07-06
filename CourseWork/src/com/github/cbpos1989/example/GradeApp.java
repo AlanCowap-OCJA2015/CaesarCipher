@@ -131,7 +131,7 @@ public class GradeApp{
 		}
 		
 		System.out.println("Your grade range is: " + resultGrade);
-
+		
 	}
 	
 }

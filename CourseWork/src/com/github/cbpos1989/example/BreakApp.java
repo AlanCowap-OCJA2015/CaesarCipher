@@ -23,6 +23,7 @@ public class BreakApp{
 		myBreakApp.runLoop(myBreakApp.userNumber);
 		
 		
+		
 	}
 	
 	//Take in user input to decide when to break the loop
@@ -36,8 +37,8 @@ public class BreakApp{
 	//Check if user input is even
 	boolean isEven(){
 		int num = userNumber;
-		return((num%2 == 0));
 		
+		return (num%2 == 0);
 	}
 	
 	//Only runs loop if user input value was even

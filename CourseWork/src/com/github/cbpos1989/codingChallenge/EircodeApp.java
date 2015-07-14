@@ -27,16 +27,18 @@ public class EircodeApp {
 		do{
 		
 		String oldChoice ;
-		System.out.println("---Eircode App Menu---\n1) Enter eircode\n2) Quit");
+		System.out.println("---Eircode\u00A9324 App Menu---\n1) Enter eircode\n2) Quit");
 		try {
 			oldChoice = scan.next();
 			int choice = Integer.parseInt(oldChoice);
 			if(choice==1){
 				
 				invalidChoice = false;
-			}else{
-				System.out.println("Thank You for using the eircode app\u00A9");
+			}else if(choice==2){
+				System.out.println("Thank You for using the Eircode\u00A9 app");
 				invalidChoice = false;
+			}else{
+				System.out.println("Please enter a valid option from the menu!!");
 			}
 			
 			

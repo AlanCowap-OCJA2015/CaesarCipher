@@ -20,24 +20,36 @@ public class EircodeApp {
 	}
 	
 	void initialiseApp(){
-		//System.out.print("Working")
-				boolean invalidChoice = true;
-				do{
-				Scanner scan = new Scanner(System.in);
-				String oldChoice ;
-				System.out.println("---Eircode App Menu---\n1) Enter eircode\n2) Quit");
+		boolean invalidChoice = true;
+		Scanner scan = new Scanner(System.in);
+		do{
+
+			String oldChoice ;
+			System.out.println("---Eircode\u00A9324 App Menu---\n1) Enter eircode\n2) Quit");
+			try {
 				oldChoice = scan.next();
 				int choice = Integer.parseInt(oldChoice);
 				if(choice==1){
 					
 					invalidChoice = false;
-				}else{
-					System.out.println("Thank You for using the Eircode App\u00A9");
+				}else if(choice==2){
+					System.out.println("Thank You for using the Eircode\u00A9 app");
 					invalidChoice = false;
+				}else{
+					System.out.println("Please enter a valid option from the menu!!");
 				}
-				
-			}while(invalidChoice);
-				
+
+
+			} catch (Exception e) {
+				System.out.println("Please enter a valid option from the menu!!");
+
+			}
+
+
+
+		}while(invalidChoice);
+		scan.close();
+
 	}
 	
 	String checkForAddress(String eircode){
@@ -45,8 +57,8 @@ public class EircodeApp {
 			if(eircodes[i].equals(eircode)){
 				return address[i];
 			} 
+
 		}
-		
 		return "No valid address found";
 	}
 }

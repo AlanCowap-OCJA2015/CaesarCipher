@@ -37,13 +37,13 @@ public class EircodeApp {
 					System.out.print("Please enter a valid Eircode: ");
 					String temp = scan.nextLine();
 
-					System.out.print("Eircode Address: " + checkForAddress(temp.toUpperCase(),true));
+					System.out.print("Address: " + checkForAddress(temp.toUpperCase(),true));
 
 					invalidChoice = false;
 				}else if(choice==2){
 					System.out.print("Please enter a valid address : ");
 					String temp = scan.nextLine();
-					System.out.print("Eircode : " + checkForAddress(temp.toUpperCase(),false));
+					System.out.print("Eircode : " + checkForAddress(temp,false));
 					invalidChoice = false;
 				}else if(choice==3){
 					System.out.print("Please enter a valid postcode : ");
@@ -81,10 +81,11 @@ public class EircodeApp {
 	String checkForAddress(String str, boolean isEircode){
 		String strNoSpace = str.replaceAll("[^A-Za-z0-9]", "");
 		String strArrayNoSpace = null;
-		checkPartialString(strNoSpace);
+		
 		if(isEircode){
 			for (int i = 0; i < eircodes.length; ++i) {
 					strArrayNoSpace = eircodes[i].replaceAll("[^A-Za-z0-9]", "");
+				
 					if(strArrayNoSpace.equals(strNoSpace)){
 						return address[i];
 					} 
@@ -95,10 +96,12 @@ public class EircodeApp {
 		} else {
 			for (int i = 0; i < address.length; ++i) {
 				strArrayNoSpace = address[i].replaceAll("[^A-Za-z0-9]", "");
-			
+				//System.out.print(strNoSpace + strArrayNoSpace);
 				if(strArrayNoSpace.equalsIgnoreCase(strNoSpace)){
 					return eircodes[i];
-				} 
+				}else if (checkPartialString(strNoSpace, strArrayNoSpace)){
+					return eircodes[i];
+				}
 
 			}
 
@@ -108,13 +111,16 @@ public class EircodeApp {
 		
 	}
 		
-	void checkPartialString(String str){
-		String strStart = str.substring(0, 5);
-		String strEnd = str.substring(str.length() -5 , str.length());
+	boolean checkPartialString(String subStr, String str){
+		String strStart = subStr.substring(0, 5);
+		String strEnd = subStr.substring(subStr.length() -5 , subStr.length());
 		
+		if (str.startsWith(strStart) && str.endsWith(strEnd)) {
+			return true;
+		} else {
+			return false;
+		}
 		
-		
-		System.out.print("Start " + strStart + " End " + strEnd);
 	}
 	
 }

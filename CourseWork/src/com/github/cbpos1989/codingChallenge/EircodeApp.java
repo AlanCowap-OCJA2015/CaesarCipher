@@ -25,12 +25,14 @@ public class EircodeApp {
 		do{
 
 			String oldChoice ;
-			System.out.println("---Eircode\u00A9324 App Menu---\n1) Enter eircode\n2) Quit");
+			System.out.println("---Eircode\u00A9 App Menu---\n1) Enter eircode\n2) Quit");
 			try {
-				oldChoice = scan.next();
+				oldChoice = scan.nextLine();
 				int choice = Integer.parseInt(oldChoice);
 				if(choice==1){
-					
+					System.out.print("Please enter a valid Eircode");
+					String temp = scan.nextLine();
+					System.out.print(checkForAddress(temp));
 					invalidChoice = false;
 				}else if(choice==2){
 					System.out.println("Thank You for using the Eircode\u00A9 app");
@@ -53,6 +55,7 @@ public class EircodeApp {
 	}
 	
 	String checkForAddress(String eircode){
+		
 		for (int i = 0; i < eircodes.length; ++i) {
 			if(eircodes[i].equals(eircode)){
 				return address[i];

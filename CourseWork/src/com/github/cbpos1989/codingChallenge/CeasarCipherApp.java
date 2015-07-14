@@ -18,7 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 
 
-public class guiApp extends JFrame {
+public class CeasarCipherApp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -33,7 +33,7 @@ public class guiApp extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					guiApp frame = new guiApp();
+					CeasarCipherApp frame = new CeasarCipherApp();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class guiApp extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public guiApp() {
+	public CeasarCipherApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 403, 230);
 		contentPane = new JPanel();

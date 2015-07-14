@@ -30,9 +30,10 @@ public class EircodeApp {
 				oldChoice = scan.nextLine();
 				int choice = Integer.parseInt(oldChoice);
 				if(choice==1){
-					System.out.print("Please enter a valid Eircode");
+					System.out.print("Please enter a valid Eircode: ");
 					String temp = scan.nextLine();
-					System.out.print(checkForAddress(temp));
+					
+					System.out.print("Eircode Address: " + checkForAddress(temp.toUpperCase()));
 					invalidChoice = false;
 				}else if(choice==2){
 					System.out.println("Thank You for using the Eircode\u00A9 app");
@@ -55,13 +56,15 @@ public class EircodeApp {
 	}
 	
 	String checkForAddress(String eircode){
-		
+		String eircodeNoSpace = eircode.replaceAll("[^A-Za-z0-9]", "");
+		String eircodesNoSpace = null;
 		for (int i = 0; i < eircodes.length; ++i) {
-			if(eircodes[i].equals(eircode)){
+			eircodesNoSpace = eircodes[i].replaceAll("[^A-Za-z0-9]", "");
+			if(eircodesNoSpace.equals(eircodeNoSpace)){
 				return address[i];
 			} 
 
 		}
-		return "No valid address found";
+		return "No valid address found for " + eircode ;
 	}
 }

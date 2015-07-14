@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  */
 public class EircodeApp {
-	String eircodes[] = {"D02 Y006","D04 C932", "D15 XR2R", "D03 RR27", "D24 H510","D02 XE81","DO2 P656"};
+	String eircodes[] = {"D02 Y006","D04 C932", "D15 XR2R", "D03 RR27", "D24 H510","D02 XE81","D02 P656"};
 	String address[] = {"5 Merrion Square North, Dublin 2","10 Burlington Road, Dublin 4","Dunsink Observatory,"
 			+ " Dunsink Lane, Dublin 15","26 Kincora Road, Clontarf, Dublin 3.",
 			"Partas, 4A Brookfield Enterprise Centre, Dublin 24","Hodges Figgis , 56-58 Dawson Street , Dublin 2"
@@ -46,7 +46,9 @@ public class EircodeApp {
 				invalidChoice = false; 
 				break;
 				case 3: System.out.print("Please enter a valid postcode : ");
-				String postCode = scan.nextLine();
+				String userInput = scan.nextLine();
+				CharSequence postCode = userInput.toUpperCase();
+				System.out.print("Addresses at " + postCode + "\n" + checkPostCode(postCode));
 				invalidChoice = false;
 				break;
 				case 4:	System.out.println("How many addresses/eir codes do you want to add ");
@@ -111,6 +113,18 @@ public class EircodeApp {
 			return false;
 		}
 		
+	}
+	
+	StringBuilder checkPostCode(CharSequence postCode){
+		StringBuilder output = new StringBuilder("");
+		
+		for (int i = 0; i < eircodes.length; ++i) {
+			if(eircodes[i].contains(postCode)){
+				output.append(address[i] + "\n");
+			}
+		}
+		
+		return output;
 	}
 	
 }

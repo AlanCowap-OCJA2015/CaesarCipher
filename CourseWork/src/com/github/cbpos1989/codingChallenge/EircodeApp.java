@@ -32,7 +32,7 @@ public class EircodeApp {
 			} 
 		}
 		
-		return "No valid adress found";
+		return "No valid address found";
 	}
 
 }

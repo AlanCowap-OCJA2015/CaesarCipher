@@ -6,7 +6,7 @@ package com.github.cbpos1989.codingChallenge;
 import java.util.Scanner;
 
 /**
- * @author User1
+ * @author user1
  *
  */
 public class EircodeApp {
@@ -33,8 +33,13 @@ public class EircodeApp {
 					System.out.print("Please enter a valid Eircode: ");
 					String temp = scan.nextLine();
 					
-					System.out.print("Eircode Address: " + checkForAddress(temp.toUpperCase()));
+					
+				
+					System.out.print("Eircode Address: " + checkForAddress(temp.toUpperCase(), false));
 					invalidChoice = false;
+				
+					
+					
 				}else if(choice==2){
 					System.out.println("Thank You for using the Eircode\u00A9 app");
 					invalidChoice = false;
@@ -47,24 +52,40 @@ public class EircodeApp {
 				System.out.println("Please enter a valid option from the menu!!");
 
 			}
-
-
-
 		}while(invalidChoice);
 		scan.close();
-
 	}
 	
-	String checkForAddress(String eircode){
-		String eircodeNoSpace = eircode.replaceAll("[^A-Za-z0-9]", "");
-		String eircodesNoSpace = null;
-		for (int i = 0; i < eircodes.length; ++i) {
-			eircodesNoSpace = eircodes[i].replaceAll("[^A-Za-z0-9]", "");
-			if(eircodesNoSpace.equals(eircodeNoSpace)){
-				return address[i];
-			} 
+	
+	
+	String checkForAddress(String str, boolean isEircode){
+		String strNoSpace = str.replaceAll("[^A-Za-z0-9]", "");
+		String strArrayNoSpace = null;
+		
+		if(isEircode){
+			for (int i = 0; i < eircodes.length; ++i) {
+					strArrayNoSpace = eircodes[i].replaceAll("[^A-Za-z0-9]", "");
+					if(strArrayNoSpace.equals(strNoSpace)){
+						return address[i];
+					} 
+			}
 
+			return "No valid address found for " + str;
+			
+		} else {
+			for (int i = 0; i < address.length; ++i) {
+				strArrayNoSpace = address[i].replaceAll("[^A-Za-z0-9]", "");
+			
+				if(strArrayNoSpace.equalsIgnoreCase(strNoSpace)){
+					return eircodes[i];
+				} 
+
+			}
+
+			return "No valid eircode found for " + str;
 		}
-		return "No valid address found for " + eircode ;
 	}
+		
+	
+	
 }

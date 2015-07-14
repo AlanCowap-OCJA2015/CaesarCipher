@@ -23,21 +23,29 @@ public class EircodeApp {
 	void initialiseApp(){
 		//System.out.print("Working")
 		boolean invalidChoice = true;
-		do{
 		Scanner scan = new Scanner(System.in);
+		do{
+		
 		String oldChoice ;
 		System.out.println("---Eircode App Menu---\n1) Enter eircode\n2) Quit");
-		oldChoice = scan.next();
-		int choice = Integer.parseInt(oldChoice);
-		if(choice==1){
+		try {
+			oldChoice = scan.next();
+			int choice = Integer.parseInt(oldChoice);
+			if(choice==1){
+				
+				invalidChoice = false;
+			}else{
+				System.out.println("Thank You for using the eircode app\u00A9");
+				invalidChoice = false;
+			}
 			
-			invalidChoice = false;
-		}else{
-			System.out.println("Thank You for using the eircode app\u00A9");
-			invalidChoice = false;
+			
+		} catch (Exception e) {
+			System.out.println("Please enter a valid option from the menu!!");
 		}
 		
-	}while(invalidChoice);
 		
+	}while(invalidChoice);
+		scan.close();
 	}
 }

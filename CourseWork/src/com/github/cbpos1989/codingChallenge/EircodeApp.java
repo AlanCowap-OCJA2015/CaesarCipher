@@ -6,8 +6,11 @@ package com.github.cbpos1989.codingChallenge;
 import java.util.Scanner;
 
 /**
- * @author user1
- *
+ * Class that allows user to interact with menu and search for address or eircodes. 
+ * 
+ * @author Colm O'Sullivan, Conor Brennan, Craig McGarry
+ * @version 1.0  
+ * @dependencies None
  */
 public class EircodeApp {
 
@@ -21,9 +24,6 @@ public class EircodeApp {
 	public static void main(String[] args) {
 		EircodeApp ea = new EircodeApp();
 		ea.initialiseApp();
-		String userAddress1 = "";
-		String userAddress2 = "";
-		String userAddress3 = "";
 	}
 
 	void initialiseApp(){
@@ -74,6 +74,7 @@ public class EircodeApp {
 	}
 
 	public void enterAddress() {
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		boolean invalidEircode = true;
 		boolean invalidChoice = true;

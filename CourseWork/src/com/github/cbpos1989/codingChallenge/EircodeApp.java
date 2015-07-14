@@ -10,8 +10,11 @@ import java.util.Scanner;
  *
  */
 public class EircodeApp {
-	String eircodes[] = {"D02 Y006","D04 C932", "D15 XR2R", "D03 RR27", "D24 H510"};
-	String address[] = {"5 Merrion Square North, Dublin 2","10 Burlington Road, Dublin 4","Dunsink Observatory, Dunsink Lane, Dublin 15","26 KINCORA ROAD, Clontarf, Dublin 3.","Partas, 4A BROOKFIELD ENTERPRISE CENTRE, Dublin 24"};
+	String eircodes[] = {"D02 Y006","D04 C932", "D15 XR2R", "D03 RR27", "D24 H510","D02 XE81","DO2 P656"};
+	String address[] = {"5 Merrion Square North, Dublin 2","10 Burlington Road, Dublin 4","Dunsink Observatory,"
+						+ " Dunsink Lane, Dublin 15","26 Kincora Road, Clontarf, Dublin 3.",
+						"Partas, 4A Brookfield Enterprise Centre, Dublin 24","Hodges Figgis , 56-58 Dawson Street , Dublin 2"
+						,"Central Bank of Ireland , Dame Street , Dublin 2"};
 	
 	public static void main(String[] args) {
 		EircodeApp ea = new EircodeApp();

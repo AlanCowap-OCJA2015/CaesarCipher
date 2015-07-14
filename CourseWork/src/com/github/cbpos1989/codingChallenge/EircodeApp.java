@@ -61,7 +61,7 @@ public class EircodeApp {
 	String checkForAddress(String str, boolean isEircode){
 		String strNoSpace = str.replaceAll("[^A-Za-z0-9]", "");
 		String strArrayNoSpace = null;
-		
+		checkPartialString(strNoSpace);
 		if(isEircode){
 			for (int i = 0; i < eircodes.length; ++i) {
 					strArrayNoSpace = eircodes[i].replaceAll("[^A-Za-z0-9]", "");
@@ -86,6 +86,13 @@ public class EircodeApp {
 		}
 	}
 		
-	
+	void checkPartialString(String str){
+		String strStart = str.substring(0, 5);
+		String strEnd = str.substring(str.length() -5 , str.length());
+		
+		
+		
+		System.out.print("Start " + strStart + " End " + strEnd);
+	}
 	
 }

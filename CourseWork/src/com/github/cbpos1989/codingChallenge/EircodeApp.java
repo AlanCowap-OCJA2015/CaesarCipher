@@ -33,42 +33,32 @@ public class EircodeApp {
 			try {
 				oldChoice = scan.nextLine();
 				int choice = Integer.parseInt(oldChoice);
-				if(choice==1){
-					System.out.print("Please enter a valid Eircode: ");
-					String temp = scan.nextLine();
 
-					System.out.print("Address: " + checkForAddress(temp.toUpperCase(),true));
+				switch(choice){
+				case 1: System.out.print("Please enter a valid Eircode: ");
+				String temp = scan.nextLine();
+				System.out.print("Eircode Address: " + checkForAddress(temp.toUpperCase(),true));
+				invalidChoice = false; 
+				break;
+				case 2: System.out.print("Please enter a valid address : ");
+				String temp1 = scan.nextLine();
+				System.out.print("Eircode : " + checkForAddress(temp1.toUpperCase(),false));
+				invalidChoice = false; 
+				break;
+				case 3: System.out.print("Please enter a valid postcode : ");
+				String postCode = scan.nextLine();
+				invalidChoice = false;
+				break;
+				case 4:	System.out.println("How many addresses/eir codes do you want to add ");
+				String uiOldChoice = scan.nextLine();
+				int uiChoice = Integer.parseInt(uiOldChoice); break;
+				case 5: System.out.println("Thank You for using the Eircode\u00A9 app");
+				invalidChoice = false;
+				break;
+				default:System.out.println("Please enter a valid option from the menu!!");
+				break;
 
-					invalidChoice = false;
-				}else if(choice==2){
-					System.out.print("Please enter a valid address : ");
-					String temp = scan.nextLine();
-					System.out.print("Eircode : " + checkForAddress(temp,false));
-					invalidChoice = false;
-				}else if(choice==3){
-					System.out.print("Please enter a valid postcode : ");
-					String postCode = scan.nextLine();
-					invalidChoice = false;
-				}else if(choice==4){
-					System.out.println("How many addresses/eir codes do you want to add ");
-					String uiOldChoice = scan.nextLine();
-					int uiChoice = Integer.parseInt(uiOldChoice);
-					for(int i = 0; i < uiChoice; ++i){
-						System.out.print("Please enter a valid address and eir code : ");
-					}
-						
-					
-					System.out.print("Please enter address now : ");
-					
-					invalidChoice = false;
-				}else if(choice ==5){
-					//quit
-					System.out.println("Thank You for using the Eircode\u00A9 app");
-					invalidChoice = false;
-				}else{
-					System.out.println("Please enter a valid option from the menu!!");
 				}
-
 
 			} catch (Exception e) {
 				System.out.println("Please enter a valid option from the menu!!");

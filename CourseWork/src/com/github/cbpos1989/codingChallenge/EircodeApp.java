@@ -48,7 +48,17 @@ public class EircodeApp {
 					String postCode = scan.nextLine();
 					invalidChoice = false;
 				}else if(choice==4){
-					System.out.print("Please enter a valid address and eir code : ");
+					System.out.println("How many addresses/eir codes do you want to add ");
+					String uiOldChoice = scan.nextLine();
+					int uiChoice = Integer.parseInt(uiOldChoice);
+					for(int i = 0; i < uiChoice; ++i){
+						System.out.print("Please enter a valid address and eir code : ");
+					}
+						
+					
+					
+					System.out.print("Please enter address now : ");
+					
 					invalidChoice = false;
 				}else if(choice ==5){
 					//quit

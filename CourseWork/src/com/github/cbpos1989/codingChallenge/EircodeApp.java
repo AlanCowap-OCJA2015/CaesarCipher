@@ -46,7 +46,8 @@ public class EircodeApp {
 				break;
 				case 2: System.out.print("Please enter a valid address : ");
 				String temp1 = scan.nextLine();
-				System.out.print("Eircode : " + checkForAddress(temp1.toUpperCase(),false));
+				
+				System.out.print("Eircode : " + checkForAddress(temp1,false));
 				//invalidChoice = false; 
 				break;
 				case 3: System.out.print("Please enter a valid postcode : ");
@@ -129,10 +130,10 @@ public class EircodeApp {
 		} else {
 			for (int i = 0; i < address.length; ++i) {
 				strArrayNoSpace = address[i].replaceAll("[^A-Za-z0-9]", "");
-				//System.out.print(strNoSpace + strArrayNoSpace);
+				
 				if(strArrayNoSpace.equalsIgnoreCase(strNoSpace)){
 					return eircodes[i];
-				}else if (checkPartialString(strNoSpace, strArrayNoSpace)){
+				} else if (checkPartialString(strNoSpace, strArrayNoSpace)){
 					return eircodes[i];
 				}
 
@@ -145,9 +146,10 @@ public class EircodeApp {
 	}
 
 	boolean checkPartialString(String subStr, String str){
+		str = str.toUpperCase();
 		String strStart = subStr.substring(0, 5);
 		String strEnd = subStr.substring(subStr.length() -5 , subStr.length());
-
+	
 		if (str.startsWith(strStart) && str.endsWith(strEnd)) {
 			return true;
 		} else {

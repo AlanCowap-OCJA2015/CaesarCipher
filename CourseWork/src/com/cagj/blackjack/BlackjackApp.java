@@ -14,6 +14,7 @@ public class BlackjackApp {
 	Cards deck;
 	Cards playerOne;
 	Cards playerTwo;
+	Cards tempDeck;
 	static int playerOneWins= 0;
 	static int playerTwoWins= 0;
 	static int draw=0;
@@ -27,8 +28,14 @@ public class BlackjackApp {
 	}
 	
 	void setupGame(){
+		System.out.println("\n---NEW GAME---");
 		System.out.println("Playing Game");
 		deck = new Cards("Deck");
+		//TODO to remove TEST
+		//tempDeck = new Cards("tempDeck");
+		//tempDeck.addAce();
+		//tempDeck.addAce();
+		
 		createDeck(deck);
 		System.out.println("Deck created");
 		playerOne = new Cards("Player One");
@@ -56,8 +63,8 @@ public class BlackjackApp {
 		
 			
 			//do{
-				playerOneHandValue = addUpHand(playerOne);
-				playerTwoHandValue = addUpHand(playerTwo);
+				playerOneHandValue = getCardsTotalValue(playerOne);
+				playerTwoHandValue = getCardsTotalValue(playerTwo);
 				
 				System.out.println("Player One starting hand contains: " + playerOne.toString() + "(Value: " + playerOneHandValue + ")");
 				System.out.println("Player Two starting hand contains: " + playerTwo.toString() + "(Value: " + playerTwoHandValue + ")\n");
@@ -87,6 +94,52 @@ public class BlackjackApp {
 		} while (playAgain());
 			
 	}
+	
+	
+	//returns correct total cards value
+	public static int getCardsTotalValue(Cards cards){
+		int totalValue = getCardsValueNoAces(cards);	//aces count as 1
+		totalValue = getCardsValueWithAces(cards, totalValue);	//aces recounted
+		
+		return totalValue;	//return correct recounted value
+	}
+	
+	
+	//aces counted as 1 point
+	public static int getCardsValueNoAces(Cards cards){
+		int value = 0;
+		for(Card c : cards.getCards()){
+			value += c.getRankInInt();
+		}
+		return value;
+	}
+	
+	
+	//counts aces as 11 points if hand value is <= 11
+	public static int getCardsValueWithAces(Cards cards, int value){
+		int numAces = getNumAces(cards);
+		while(numAces > 0 && value <= 11){
+			numAces--;
+			value+=10;
+		}
+		return value;
+		
+	}
+	
+	
+	//returns number of aces in hand
+	public static int getNumAces(Cards cards){
+		int numAces = 0;
+		
+		for(Card c : cards.getCards()){
+			if(c.getRankInInt() == 1){
+				numAces++;
+			}
+		}	
+		return numAces;
+	}
+	
+	
 	
 	int addUpHand(Cards player){
 		int totalCardValue = 0;
@@ -160,10 +213,10 @@ public class BlackjackApp {
 
 			}else if(playerHandValue < 17){
 				dealCard(deck,player);
-				nextCard = player.getCards().get(player.getCards().size()-1).getRankInInt();
-				nextCard = checkForAce(player.getCards().get(player.getCards().size()-1),playerHandValue);
+				//nextCard = player.getCards().get(player.getCards().size()-1).getRankInInt();
+				//nextCard = checkForAce(player.getCards().get(player.getCards().size()-1),playerHandValue);
 				//System.out.print("Next Card: " +nextCard);
-				playerHandValue += nextCard;
+				playerHandValue = getCardsTotalValue(player);
 				//System.out.print("New Value : " + playerHandValue);
 				System.out.println(player.getName() + " hand contains: " + player.toString() + "(Value: " + playerHandValue + ")");
 			}

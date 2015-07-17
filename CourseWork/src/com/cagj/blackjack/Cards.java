@@ -15,7 +15,9 @@ public class Cards {
 		this.name = name;
 	}
 
-
+	public void addAce(){
+		cards.add(new Card(Suits.SPADES, "A"));
+	}
 	
 	
 	public String getName() {

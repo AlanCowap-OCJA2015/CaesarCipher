@@ -92,8 +92,11 @@ public class BlackjackApp {
 		int totalCardValue = 0;
 		
 		for(Card c: player.getCards()){
-			totalCardValue+= c.getRankInInt();
+			totalCardValue += c.getRankInInt();
+			
 		}
+		
+		
 		//System.out.println("Value of players hand: " + totalCardValue);
 		
 		return totalCardValue;
@@ -134,7 +137,7 @@ public class BlackjackApp {
 	}
 	
 	int checkForAce(Card c, int playerHandValue){
-		if(c.getRankInInt() == 1 && playerHandValue < 11){
+		if(c.getRankInInt() == 1 && playerHandValue <= 11){
 			return 11;
 		} else if (c.getRankInInt() == 1 && playerHandValue > 11){
 			return 1;

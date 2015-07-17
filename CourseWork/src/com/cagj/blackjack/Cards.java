@@ -9,10 +9,22 @@ import java.util.Collections;
 public class Cards {
 	ArrayList<Card> cards = new ArrayList<Card>();
 
+	private String name;
+	
+	public Cards(String name){
+		this.name = name;
+	}
 
 
 	
 	
+	public String getName() {
+		return name;
+	}
+
+
+
+
 	public ArrayList<Card> getCards(){
 		return this.cards;
 	}

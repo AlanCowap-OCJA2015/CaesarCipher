@@ -106,6 +106,12 @@ public class BlackjackApp {
 		Collections.shuffle(player.getCards());
 	}
 	
+	int checkForAce(Card c){
+		
+		
+		return 11;
+	}
+	
 	public int playGame(int playerHandValue, Cards player){
 		boolean hold = false;
 
@@ -118,6 +124,7 @@ public class BlackjackApp {
 
 			}else if(playerHandValue < 17){
 				dealCard(deck,player);
+				System.out.print("Updated Player HAND:" + player.toString());
 				nextCard = player.getCards().get(player.getCards().size()-1).getRankInInt();
 				
 				if(nextCard == 1 && playerHandValue < 11){
@@ -125,6 +132,7 @@ public class BlackjackApp {
 				}
 
 				playerHandValue += nextCard;
+				System.out.print("New Value :" + playerHandValue);
 			}
 
 		}while(!hold);

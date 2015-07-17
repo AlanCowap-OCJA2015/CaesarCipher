@@ -54,6 +54,10 @@ public class BlackjackApp {
 				playerOneHandValue = playGame(playerOneHandValue, playerOne);
 				playerTwoHandValue = playGame(playerTwoHandValue, playerTwo);
 				
+				if(playerOneHandValue > playerTwoHandValue){
+					System.out.println("Player One wins");
+				}
+				
 				isPlaying = false;
 			} while(isPlaying);
 			isRunning = false;
@@ -106,10 +110,16 @@ public class BlackjackApp {
 		Collections.shuffle(player.getCards());
 	}
 	
-	int checkForAce(Card c){
-		
-		
-		return 11;
+	int checkForAce(Card c, int playerHandValue){
+		if(c.getRankInInt() == 1 && playerHandValue < 11){
+			return 11;
+		} else if (c.getRankInInt() == 1 && playerHandValue > 11){
+			return 1;
+		} else {
+			//return playerHandValue;
+			return c.getRankInInt();
+		}
+	
 	}
 	
 	public int playGame(int playerHandValue, Cards player){
@@ -126,19 +136,19 @@ public class BlackjackApp {
 				dealCard(deck,player);
 				System.out.print("Updated Player HAND:" + player.toString());
 				nextCard = player.getCards().get(player.getCards().size()-1).getRankInInt();
-				
-				if(nextCard == 1 && playerHandValue < 11){
-					nextCard = 11;
-				}
-
+				nextCard = checkForAce(player.getCards().get(player.getCards().size()-1),playerHandValue);
+				System.out.print("Next Card: " +nextCard);
 				playerHandValue += nextCard;
-				System.out.print("New Value :" + playerHandValue);
+				System.out.print("New Value : " + playerHandValue);
 			}
 
 		}while(!hold);
 		
 		if(playerHandValue > 21){
-			//player is bust (could return 0? ie always lose)
+			//player is bust return 0, ie always lose)
+			System.out.print("Player has gone over 21 and busted");
+			playerHandValue = 0;
+			System.out.println("New value : " + playerHandValue);
 		}
 		
 		return playerHandValue;

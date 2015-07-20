@@ -18,27 +18,48 @@ public class CeasarCipher {
 		int shiftValue;
 		boolean direction = true;
 
-		Scanner scan = new Scanner (System.in);
-		System.out.println("please enter text to encrypt:");
-		userText = scan.nextLine();
+		Scanner scan = new Scanner(System.in);
 
-		System.out.println("please enter the shift value:");
+
+		System.out.println("Please enter text of a length up to 140 characters" 
+				+ " to encrypt:");
+		userText = scan.nextLine();
+		while(userText.length() > 140){
+			Scanner scan2 = new Scanner(System.in);
+			System.out.println("That text is too long, please try again:");
+			userText = scan2.nextLine();
+		}
+
+		System.out.println("Please enter the shift value (use a negative number"
+				+ " to shift to the left:");
+		while(!scan.hasNextInt()){
+			scan.next();
+			System.out.print("Sorry that is not a valid number, "
+					+ "please try again:");
+		}
 		shiftValue = scan.nextInt();
 
-		System.out.println("please enter if you want to shift right(1) or left(2):");
-		userDirection = scan.nextInt();
+		//		System.out.println("Please enter if you want to shift right(1)"
+		//				+ " or left(2):");
+		//		while(!scan.hasNextInt()){
+		//			scan.next();
+		//			System.out.print("Sorry that is not a valid number, please "
+		//					+ "try again:");
+		//		}
+		//		userDirection = scan.nextInt();
+		//
+		//		if(userDirection == 1){
+		//			direction = true;
+		//		}
+		//		else if(userDirection == 2){
+		//			direction = false;
+		//		}
+		//		else{
+		//			System.out.println("Sorry that is not a vaild value, defaulting "
+		//					+ "to shift right");
+		//		}
 
-		if(userDirection == 1){
-			direction = true;
-		}
-		else if(userDirection == 2){
-			direction = false;
-		}
-		else{
-
-		}
-
-		encrypt = encrypt(userText, shiftValue, direction);
+		encrypt = encryption(userText, shiftValue);
 		System.out.println("Encrypt...");
 		System.out.println(encrypt);
 
@@ -49,14 +70,16 @@ public class CeasarCipher {
 		}catch(Exception e){
 
 		}
-
-		decryption = decrypt(encrypt);
+		//changing direction for decryption
+		//direction = !direction;
+		decryption = encryption(encrypt, -shiftValue);
 		System.out.println("Decrypt...");
 		System.out.println(decryption);
 	}
 
-	//Method to encrypt a given string
-	private static String encrypt(String plainText, int shiftValue, 
+	//Method to encrypt and decrypt a given string
+	@SuppressWarnings("unused")
+	private static String encryption(String plainText, int shiftValue, 
 			boolean direction){
 		String encrypt = "";
 		for(int i = 0 ; i < plainText.length(); ++i){
@@ -81,30 +104,23 @@ public class CeasarCipher {
 		return encrypt;
 	}//end of encrypt
 
-	//Method to decrypt a given String
-	private static String decrypt(String encryption, int shiftValue, 
-			boolean direction){
-		String decryption = "";
-		for(int i = 0; i < encryption.length(); ++i){
-			char c = encryption.charAt(i);
+	private static String encryption(String plainText, int shiftValue){
+		String encrypt = "";
+		for(int i = 0 ; i < plainText.length(); ++i){
+			char c = plainText.charAt(i);
 			if(c < 32 || c > 126){
-				decryption += c;
+				encrypt += c;
 				continue;
 			}
-			if(direction){
-				c -= shiftValue;
-			}
-			else{
-				c += shiftValue;
-			}
+			c += shiftValue;
+
 			if((int)c > 126){
 				c -= 95;
 			}else if((int)c < 32){
 				c += 95;
 			}
-			decryption += c;
+			encrypt += c;
 		}
-		return decryption;
-	}//end of decrypt
-
+		return encrypt;
+	}//end of encrypt
 }

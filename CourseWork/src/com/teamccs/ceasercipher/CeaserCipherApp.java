@@ -49,7 +49,6 @@ public class CeaserCipherApp {
 		do{
 			System.out.println("Please choose shift Direction (R = right, L = left");
 			String input = scan.next();
-
 			if(input.equalsIgnoreCase("R")){
 				setDirection(true);
 				invalidInput = false;
@@ -60,8 +59,19 @@ public class CeaserCipherApp {
 				invalidInput = true;
 			}
 		} while(invalidInput);
-		
+	
 	}
+	
+	private void userMagnitudeInput(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please select the magnitude value of encryption:");
+		int input = scan.nextInt();
+		this.shiftMagnitude = input;
+	}
+
+	
+		
+	
 	
 	private void setDirection(boolean right){
 		if(!right){
@@ -90,7 +100,7 @@ public class CeaserCipherApp {
 				invalidInput = true;
 			}
 		} while(invalidInput);
-		
+	
 	}
 	
 	public void userInput(){
@@ -137,3 +147,4 @@ public class CeaserCipherApp {
 	}
 
 }
+	

@@ -1,20 +1,84 @@
-/**
- * 
- */
 package com.teamccs.ceasercipher;
+
+import java.util.Scanner;
 
 /**
  * @author User1
  *
  */
 public class CeaserCipherApp {
+	
+	public static void main(String[] args) {		
+		
+		
+		CeaserCipherApp cC = new CeaserCipherApp();
+		cC.userMenu();
+			
+	}
+	
+	private void userMenu(){
+		boolean invalidInput = true;
+		Scanner scan = new Scanner(System.in);
+		String input = "";
+			System.out.println("Ceaser Cipher Menu\n1)Enter Input\n2)Shift Direction\n3)Shift Magnitude\n4)Encryption/Decryption\n5)Exit");
+		do{
+			System.out.print("Enter Choice: ");
+			input = scan.next();
+			try{
+				int inputNum = Integer.parseInt(input);
+				invalidInput = false;
+			} catch(NumberFormatException nfe){
+				invalidInput = true;
+			};
+		} while(invalidInput);
+		
+		switch(input){
+		
+		};
+	
+	}
+	
+	public void userInput(){
+		boolean invalidInput = true;
+		
+		Scanner scan = new Scanner(System.in);
+		do{
+			System.out.println("Please input your text:");
+			String input = scan.nextLine();
+			
+			if(input.isEmpty()){
+				System.out.println("Please enter valid input");
+				invalidInput = true;
+			} else {
+				System.out.println("Encryted Text: " + stringToCharConvert(input));
+				invalidInput = false;
+			}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		}while(invalidInput);
+	}
+	
+	public String stringToCharConvert(String input){
+		char[] convertedString = input.toCharArray();	
+		char[] tempCharArray = new char[convertedString.length];
+		String output = "";
+		for(int i = 0; i < convertedString.length; ++i){
+			tempCharArray[i] = shiftChar(1, convertedString[i]);
+			output += tempCharArray[i];
+		}
+		return output;
+	}
+	
+	private char shiftChar(int shift, char c){
+		
+		if(c == 126){
+			c = 32;
+		}else if (c == 32){
+			c =126;
+		} else {
+			c = (char) (c+(shift));
+		}
+		
+		return c;
 	}
 
 }

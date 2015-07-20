@@ -41,8 +41,6 @@ public class CaesarCipher {
 
 	public static void main(String[] args) {
 		String userText ;
-		String encryptText;
-		String decryptText;
 		CaesarCipher cc = new CaesarCipher();
 		int offset = 1;
 		int direction = 1;
@@ -50,7 +48,7 @@ public class CaesarCipher {
 		boolean isRunning = true;
 		do{
 			System.out.println("1) Enter a String ");
-			System.out.println("2) Change the encryption magnitude and direction");
+			System.out.println("2) Change the encryption magnitude and direction (optional)");
 			System.out.println("3) Encrypt the stored string ");
 			System.out.println("4) Decrypt the stored string");
 			System.out.println("5) Quit ");
@@ -70,6 +68,8 @@ public class CaesarCipher {
 				String tempString = scan.next();
 				if (tempString.toUpperCase().startsWith("L")){
 					direction = -1;
+				}else {
+					direction = 1;
 				}
 				System.out.println("Please choose the magnitude to shift the string (between 0 and 26)");
 				offset = scan.nextInt();

@@ -30,8 +30,6 @@ public class CaesarCipherApp {
 					case 4: System.out.println("Program quitting. Thank you"); break mainloop;
 				};
 			}
-
-
 	}
 
 	/**
@@ -74,12 +72,8 @@ public class CaesarCipherApp {
 		inputString = scan.nextLine();
 		inputString = scan.nextLine();
 
-		System.out.println("You entered " + inputString);
 		if (inputString.length() > 0 && inputString.length() <= 140) {
-			StringBuffer newString = new StringBuffer(inputString);
-			System.out.println("Encrypting " + newString);
-			crypt(newString, shiftValue);
-			System.out.println("The encrypted string is '" + newString + "'");
+			System.out.println("This encrypts to '" + crypt(inputString, shiftValue) + "'");
 		}else if(inputString.length() > 140){
 			System.out.println("The string is greater than the allowable length.");
 		}
@@ -88,8 +82,8 @@ public class CaesarCipherApp {
 	}
 
 	/**
-	 * Get a string from the user to decrypt and call the crypt method with the shifvalue
-	 * inverted to do the descryption
+	 * Get a string from the user to decrypt and call the crypt method with the shift value
+	 * inverted to do the decryption
 	 */
 	public static void decryptString() {
 		String inputString;
@@ -98,12 +92,8 @@ public class CaesarCipherApp {
 		inputString = scan.nextLine();
 		inputString = scan.nextLine();
 
-		System.out.println("You entered " + inputString);
 		if (inputString.length() > 0 && inputString.length() <= 140) {
-			StringBuffer newString = new StringBuffer(inputString);
-			System.out.println("Decrypting " + newString);
-			crypt(newString, -shiftValue);
-			System.out.println("The decrypted string is '" + newString + "'");
+			System.out.println("This decrypts to '" + crypt(inputString, -shiftValue) + "'");
 		}else if(inputString.length() > 140){
 			System.out.println("The string is greater than the allowable length.");
 		}
@@ -118,10 +108,11 @@ public class CaesarCipherApp {
 	 * @param string to encrypt/decrypt
 	 * @param number of characters to shift up or down by
 	 */
-	private static void crypt(StringBuffer newString, int shift) {
+	private static String crypt(String newString, int shift) {
+		StringBuffer s = new StringBuffer(newString);
 		char c;
 		for (int i = 0; i < newString.length(); ++i) {
-			c = newString.charAt(i);
+			c = s.charAt(i);
 			if (c >= 32 && c <= 126) {
 				c = (char)(c + shift);
 				if (c < 32){
@@ -129,10 +120,11 @@ public class CaesarCipherApp {
 				}else if(c > 126){
 					c -= 95;
 				}
-				newString.setCharAt(i, c);
+				s.setCharAt(i, c);
 
 			}
 		}
+		return s.toString();
 	}
 
 	/**

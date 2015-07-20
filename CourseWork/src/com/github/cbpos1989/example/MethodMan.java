@@ -18,12 +18,13 @@ public class MethodMan {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MethodMan mm = new MethodMan("Joe Bloggs", 25);
-		mm.printDetails();
+		System.out.print(mm.toString());
 	}
 	
 	public MethodMan(String name, int age){
 		setName(name);
 		setAge(age);
+		
 	}
 	
 	public String getName(){
@@ -42,8 +43,8 @@ public class MethodMan {
 		this.age = age;
 	}
 	
-	private void printDetails(){
-		System.out.print("Name: " + getName() + "\nAge: " + getAge());
+	public String toString(){
+		return "Name: " + getName() + "\nAge: " + getAge();
 	}
 
 }

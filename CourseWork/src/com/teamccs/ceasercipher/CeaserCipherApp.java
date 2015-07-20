@@ -7,10 +7,10 @@ import java.util.Scanner;
  *
  */
 public class CeaserCipherApp {
+	private int shiftMagnitude = 1;
+	boolean isEncypting = true;
 	
 	public static void main(String[] args) {		
-		
-		
 		CeaserCipherApp cC = new CeaserCipherApp();
 		cC.userMenu();
 			
@@ -19,23 +19,54 @@ public class CeaserCipherApp {
 	private void userMenu(){
 		boolean invalidInput = true;
 		Scanner scan = new Scanner(System.in);
-		String input = "";
+		int inputNum = 0;
 			System.out.println("Ceaser Cipher Menu\n1)Enter Input\n2)Shift Direction\n3)Shift Magnitude\n4)Encryption/Decryption\n5)Exit");
 		do{
 			System.out.print("Enter Choice: ");
-			input = scan.next();
+			String input = scan.next();
 			try{
-				int inputNum = Integer.parseInt(input);
+				inputNum = Integer.parseInt(input);
 				invalidInput = false;
 			} catch(NumberFormatException nfe){
 				invalidInput = true;
 			};
 		} while(invalidInput);
 		
-		switch(input){
-		
+		switch(inputNum){
+			case 1: userInput();break;
+			case 2:userDirectionInput();break;
+			case 3:break;
+			case 4:break;
+			case 5:break;
+				default:break;
 		};
 	
+	}
+	
+	private void userDirectionInput(){
+		boolean invalidInput = true;
+		Scanner scan = new Scanner(System.in);
+		do{
+			System.out.println("Please choose shift Direction (R = right, L = left");
+			String input = scan.next();
+
+			if(input.equalsIgnoreCase("R")){
+				setDirection(true);
+				invalidInput = false;
+			} else if(input.equalsIgnoreCase("L")){
+				setDirection(false);
+				invalidInput = false;
+			} else {
+				invalidInput = true;
+			}
+		} while(invalidInput);
+		
+	}
+	
+	private void setDirection(boolean right){
+		if(!right){
+			this.shiftMagnitude *= -1;
+		}
 	}
 	
 	public void userInput(){

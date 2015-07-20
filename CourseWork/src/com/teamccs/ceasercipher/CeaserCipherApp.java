@@ -28,7 +28,7 @@ public class CeaserCipherApp {
 			System.out.println("1)Enter Input  (" + userText + ")" );
 			//System.out.println("2)Shift Direction (" + getDirection() + ")");
 			System.out.println("2)Shift Direction");
-			System.out.println("3)Shift Magnitude");
+			System.out.println("3)Shift Magnitude  (" + shiftMagnitude + ")");
 			System.out.println("4)Encryption/Decryption");
 			System.out.println("5)Print Output");
 			System.out.println("6)Exit");
@@ -141,6 +141,7 @@ public class CeaserCipherApp {
 				invalidInput = false;
 			}
 
+			
 		}while(invalidInput);
 	}
 
@@ -156,6 +157,7 @@ public class CeaserCipherApp {
 	}
 
 	private char shiftChar(int shift, char c){
+		shift = shift%94;
 		if(isEncypting){
 			if(c == 126){
 				c = 32;

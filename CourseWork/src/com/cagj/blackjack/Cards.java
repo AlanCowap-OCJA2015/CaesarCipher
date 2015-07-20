@@ -1,11 +1,16 @@
 /**
- * Cards holds the cards
+ * 
  */
 package com.cagj.blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Cards holds the cards
+ * 
+ * @author Colm O'Sullivan, Artjoms Porss, Gregory Harman & Joe Murphy
+ */
 public class Cards {
 	ArrayList<Card> cards = new ArrayList<Card>();
 

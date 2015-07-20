@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * @author User1
+ * @author Colm O'Sullivan, Artjoms Porss, Gregory Harman & Joe Murphy
  *
  */
 public class BlackjackApp {
@@ -123,7 +123,6 @@ public class BlackjackApp {
 			value+=10;
 		}
 		return value;
-		
 	}
 	
 	

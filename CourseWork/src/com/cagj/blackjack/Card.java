@@ -1,8 +1,12 @@
 /**
- * Class which holds the cards state and behaviour
+*
  */
 package com.cagj.blackjack;
-
+/**
+ * Class which holds the cards state and behaviour
+ * 
+ * @author Colm O'Sullivan, Artjoms Porss, Gregory Harman & Joe Murphy
+ */
 public class Card {
 
 	//state

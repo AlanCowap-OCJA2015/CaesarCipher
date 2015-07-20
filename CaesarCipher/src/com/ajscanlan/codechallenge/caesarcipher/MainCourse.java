@@ -2,6 +2,10 @@ package com.ajscanlan.codechallenge.caesarcipher;
 
 import java.util.Scanner;
 
+/**
+ * Created by Greg, Mick and PrM by Alex LTD.
+ *
+ */
 public class MainCourse {
 	boolean running = true;
 	CaeserSalad salad = new CaeserSalad();

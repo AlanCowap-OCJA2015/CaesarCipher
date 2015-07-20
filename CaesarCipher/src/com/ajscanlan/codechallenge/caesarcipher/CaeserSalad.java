@@ -3,6 +3,10 @@ package com.ajscanlan.codechallenge.caesarcipher;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Created by Greg, Mick and PrM by Alex LTD.
+ *
+ */
 public class CaeserSalad {
 
 	void encryptLettuce(int choice){
@@ -22,7 +26,7 @@ public class CaeserSalad {
 			}
 
 		}while(isCorrectNum);
-		
+
 		while(shiftySalad > 94){
 			shiftySalad -= 94;
 		}
@@ -30,14 +34,25 @@ public class CaeserSalad {
 		if(choice == 2){
 			shiftySalad = -shiftySalad;
 		}
+		boolean is140Chars = true;
+		String text = null;
+		do{
+			scan = new Scanner(System.in);
+			System.out.println("Please enter the sentence you want to encypt/decrypt (140 characters maximum): ");
+			text = scan.nextLine();
+			if(text.length() < 141){
+				is140Chars = false;
+			}else{
+				System.out.println("Must be 140 characters or less.");
+			}
+			
+		}while(is140Chars);
 
-
-		scan = new Scanner(System.in);
-
-		System.out.println("please enter the sentence you want to encypt/decrypt");
-		String text = scan.nextLine();
 		char tempTomato;
 		char [] charText = text.toCharArray();
+
+
+
 
 		for(int i = 0 ; i < charText.length;i++ ){
 			tempTomato = charText[i];

@@ -8,7 +8,9 @@ import java.util.Scanner;
  */
 public class CeaserCipherApp {
 	private int shiftMagnitude = 1;
+	private int shiftDirection = 1;
 	boolean isEncypting = true;
+	private String userText;
 	
 	public static void main(String[] args) {		
 		CeaserCipherApp cC = new CeaserCipherApp();
@@ -17,32 +19,41 @@ public class CeaserCipherApp {
 	}
 	
 	private void userMenu(){
-		boolean invalidInput = true;
+		boolean isRunning = true;
 		Scanner scan = new Scanner(System.in);
 		int inputNum = 0;
-			System.out.println("Ceaser Cipher Menu\n1)Enter Input\n2)Shift Direction\n3)Shift Magnitude\n4)Encryption/Decryption\n5)Exit");
+			
 		do{
+			inputNum = 0;
+			System.out.println("Ceaser Cipher Menu\n1)Enter Input\n2)Shift Direction\n3)Shift Magnitude\n4)Encryption/Decryption\n5)Print Output\n6)Exit");
 			System.out.print("Enter Choice: ");
-			String input = scan.next();
+			String input = scan.nextLine();
 			try{
 				inputNum = Integer.parseInt(input);
-				invalidInput = false;
 			} catch(NumberFormatException nfe){
-				invalidInput = true;
+				System.out.println("Invalid option, please pick a valid number");
+				isRunning = true;
 			};
-		} while(invalidInput);
-		
-		switch(inputNum){
-			case 1: userInput();break;
-			case 2:userDirectionInput();break;
+			
+			switch(inputNum){
+			case 1:userInput(); break;
+			case 2:userDirectionInput(); break;
 			case 3:userMagnitudeInput();break;
 			case 4:setEncryption();break;
-			case 5:break;
+			case 5:printOutput();break;
+			case 6:isRunning = false;break;
 				default:break;
 		};
+		} while(isRunning);
+		
+		
 	
 	}
 	
+	private void printOutput() {
+		System.out.println("Encrypted Text: " + stringToCharConvert(userText));		
+	}
+
 	private void userDirectionInput(){
 		boolean invalidInput = true;
 		Scanner scan = new Scanner(System.in);
@@ -64,24 +75,20 @@ public class CeaserCipherApp {
 	
 	private void userMagnitudeInput(){
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Please select the magnitude value of encryption:");
+		System.out.print("Please select the magnitude value of encryption: ");
 		int input = scan.nextInt();
 		this.shiftMagnitude = input;
+		this.shiftMagnitude *= this.shiftDirection;
 	}
 
 	
-		
-	
-	
 	private void setDirection(boolean right){
 		if(!right){
-			this.shiftMagnitude *= -1;
+			this.shiftDirection *= -1;
 		}
 	}
 	
-	private void setMagnitude(){
-		
-	}
+	
 	
 	private void setEncryption(){
 		boolean invalidInput = true;
@@ -109,13 +116,12 @@ public class CeaserCipherApp {
 		Scanner scan = new Scanner(System.in);
 		do{
 			System.out.println("Please input your text:");
-			String input = scan.nextLine();
+			userText = scan.nextLine();
 			
-			if(input.isEmpty()){
+			if(userText.isEmpty()){
 				System.out.println("Please enter valid input");
 				invalidInput = true;
 			} else {
-				System.out.println("Encryted Text: " + stringToCharConvert(input));
 				invalidInput = false;
 			}
 
@@ -127,22 +133,30 @@ public class CeaserCipherApp {
 		char[] tempCharArray = new char[convertedString.length];
 		String output = "";
 		for(int i = 0; i < convertedString.length; ++i){
-			tempCharArray[i] = shiftChar(1, convertedString[i]);
+			tempCharArray[i] = shiftChar(this.shiftMagnitude, convertedString[i]);
 			output += tempCharArray[i];
 		}
 		return output;
 	}
 	
 	private char shiftChar(int shift, char c){
-		
-		if(c == 126){
-			c = 32;
-		}else if (c == 32){
-			c =126;
+		if(isEncypting){
+			if(c == 126){
+				c = 32;
+			}else if (c == 32){
+				c =126;
+			} else {
+				c = (char) (c+(shift));
+			}
 		} else {
-			c = (char) (c+(shift));
+			if(c == 126){
+				c = 32;
+			}else if (c == 32){
+				c =126;
+			} else {
+				c = (char) (c-(shift));
+			}
 		}
-		
 		return c;
 	}
 

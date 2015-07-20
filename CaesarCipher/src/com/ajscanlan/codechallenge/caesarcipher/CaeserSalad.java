@@ -1,30 +1,40 @@
 package com.ajscanlan.codechallenge.caesarcipher;
 
+import java.util.Scanner;
+
 public class CaeserSalad {
 
-	String encryptLettuce(String text){
-		char tempTomatoe;
+	String encryptLettuce(int shiftySalad){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("please enter the sentence you want to encypt");
+		String text = scan.nextLine();
+		char tempTomato;
 		char [] charText = text.toCharArray();
 		
 		for(int i = 0 ; i < charText.length;i++ ){
-			tempTomatoe = charText[i];
-			tempTomatoe++;
-			charText[i] = tempTomatoe;
+			tempTomato = charText[i];
+			tempTomato += shiftySalad;
+			charText[i] = tempTomato;
 		}
 		String temp = new String(charText);
+	//	scan.close();
 		return temp;
 	}
 	
-	String dencryptLettuce(String text){
-		char tempTomatoe;
+	String dencryptLettuce(int shiftySalad){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter the sentence you want to decrypt");
+		String text = scan.nextLine();
+		char tempTomato;
 		char [] charText = text.toCharArray();
 		
 		for(int i = 0 ; i < charText.length;i++ ){
-			tempTomatoe = charText[i];
-			tempTomatoe--;
-			charText[i] = tempTomatoe;
+			tempTomato = charText[i];
+			tempTomato -= shiftySalad;
+			charText[i] = tempTomato;
 		}
 		String temp = new String(charText);
+	//	scan.close();
 		return temp;
 	}
 	

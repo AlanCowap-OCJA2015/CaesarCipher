@@ -60,6 +60,11 @@ public class CaesarCipher {
 				System.out.println("please enter your string " );
 				Scanner sc = new Scanner(System.in);
 				userText = sc.nextLine();
+				while(userText.length() > 140){
+					Scanner scan2 = new Scanner(System.in);
+					System.out.println("That text is too long, please try again:");
+					userText = scan2.nextLine();
+				}
 				System.out.println(userText);
 				userTextArray = userText.toCharArray();
 				break;
@@ -80,7 +85,7 @@ public class CaesarCipher {
 				break;
 
 			case 4 : 
-				userTextArray = cc.decrypt(userTextArray, offset*direction);
+				userTextArray = cc.encrypt(userTextArray, -(offset*direction));
 				System.out.println(String.valueOf(userTextArray));
 				break;
 			case 5:

@@ -31,6 +31,8 @@ public class EncryptionApp {
 
 	//prompt user for initial menu
 	public void encryptionMenu(){
+		boolean isRunning = true;
+		
 		System.out.println("---Encryption App---");
 		System.out.println("1)Encrypt text");
 		System.out.println("2)Decrypt text");
@@ -42,10 +44,10 @@ public class EncryptionApp {
 			switch(userOption){
 			case "1" : encryptText(); break;//run encrypt text method
 			case "2" : dencryptText();break;//run decrypt text method
-			case "3" : break;//run quit method
+			case "3" : isRunning = false;break;//run quit method
 			default: System.out.print("Enter a valid option: ");
 			}
-		}while(true);
+		}while(isRunning);
 	}
 
 
@@ -112,33 +114,45 @@ public class EncryptionApp {
 	//prompts user for input
 	private String getUserText(){
 		//get user input
-		System.out.print("Enter text to be encrypted: " );
-		String userInput = scan.nextLine();
+		boolean invalidInput = true;
+		String userInput = "";
+	
+		do{
+			System.out.print("Enter text to be encrypted: " );
+			userInput = scan.next();
+			if(userInput.length() > 140){
+				System.out.println("Message to long only 140 characters allowed" );
+				invalidInput = true;
+			} else {
+				invalidInput = false;
+				
+			}
+		} while(invalidInput);
+		
 		//store user input in char[]
 		return userInput;
+		
 	}
 
 
 	//prompts user for shifting direction
 	private void getShiftDirection(){
 		boolean haveDirection = false;
+		Scanner scan = new Scanner(System.in);
 		//prompt user does he wants to shift left or right?
-		System.out.print("Do you want to shift the text left or right? (l/r): ");
+		
 		do{
+			System.out.print("Do you want to shift the text left or right? (l/r): ");
 			String shiftDirection = scan.nextLine();
+			shiftDirection = shiftDirection.toLowerCase();
+			
 			switch(shiftDirection){
-				case "r" : { 
-					isRight = true; 
-					haveDirection = true; 
-					break;
-				}
-				case "l" : {
-					isRight = false; 
-					this.magnitude = this.magnitude * -1; 
-					haveDirection = true; 
-					break;
-				}
-				default: System.out.print("Please type 'l' or 'r' for direction");
+				case "r" :  isRight = true; 
+							haveDirection = true; break;
+				case "l" : isRight = false; 
+						   this.magnitude = this.magnitude * -1; 
+						   haveDirection = true; break;
+				default: System.out.println("Please type 'l' or 'r' for direction"); break;
 			}
 			
 		}while(haveDirection == false);

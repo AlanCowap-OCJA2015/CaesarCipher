@@ -35,8 +35,8 @@ public class CeaserCipherApp {
 		switch(inputNum){
 			case 1: userInput();break;
 			case 2:userDirectionInput();break;
-			case 3:break;
-			case 4:break;
+			case 3:userMagnitudeInput();break;
+			case 4:setEncryption();break;
 			case 5:break;
 				default:break;
 		};
@@ -67,6 +67,30 @@ public class CeaserCipherApp {
 		if(!right){
 			this.shiftMagnitude *= -1;
 		}
+	}
+	
+	private void setMagnitude(){
+		
+	}
+	
+	private void setEncryption(){
+		boolean invalidInput = true;
+		Scanner scan = new Scanner(System.in);
+		do{
+			System.out.println("Please to choose (E = Encrypt, D = Decrypt");
+			String input = scan.next();
+
+			if(input.equalsIgnoreCase("E")){
+				this.isEncypting = true;
+				invalidInput = false;
+			} else if(input.equalsIgnoreCase("D")){
+				this.isEncypting = false;
+				invalidInput = false;
+			} else {
+				invalidInput = true;
+			}
+		} while(invalidInput);
+		
 	}
 	
 	public void userInput(){

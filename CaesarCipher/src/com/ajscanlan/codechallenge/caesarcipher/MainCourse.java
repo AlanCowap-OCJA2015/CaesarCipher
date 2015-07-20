@@ -31,17 +31,15 @@ public class MainCourse {
 		switch(userInput){
 
 		case "1" : 
-			System.out.println("Please enter shift magnitude");
-			int shiftEnc = scan.nextInt();
-			text = salad.encryptLettuce(shiftEnc);
-			System.out.println(text);
+			
+			salad.encryptLettuce(1);
+			
 			break;
 
 		case "2" :
-			System.out.println("Please enter shift magnitude");
-			int shiftDec = scan.nextInt();
-			text = salad.dencryptLettuce(shiftDec);
-			System.out.println(text);
+		
+			salad.encryptLettuce(2);
+			
 			break;
 		
 		case "3" : 

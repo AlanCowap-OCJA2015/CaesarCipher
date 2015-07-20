@@ -1,16 +1,31 @@
 package com.ajscanlan.codechallenge.caesarcipher;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CaeserSalad {
 
 	void encryptLettuce(int choice){
+		Scanner scan = new Scanner(System.in);
+		boolean isCorrectNum = true;
+		int shiftySalad = 0;
 
+		do{
+			System.out.println("Please enter shift magnitude (minus or plus whole number): ");
+			shiftySalad = 0;
+			try {
+				scan = new Scanner(System.in);
+				shiftySalad = scan.nextInt();
+				isCorrectNum = false;
+			} catch (InputMismatchException e) {
+				System.out.println("Not a valid number.");
+			}
 
-		System.out.println("Please enter shift magnitude");
-
-		Scanner scan = new Scanner(System.in);		
-		int shiftySalad = scan.nextInt();
+		}while(isCorrectNum);
+		
+		while(shiftySalad > 94){
+			shiftySalad -= 94;
+		}
 
 		if(choice == 2){
 			shiftySalad = -shiftySalad;
@@ -33,7 +48,7 @@ public class CaeserSalad {
 				temp = 32 + temp;
 				tempTomato = (char)temp;
 
-				
+
 			}else if( tempTomato < 32){
 				int temp = tempTomato + 126;
 				temp = temp - 32;

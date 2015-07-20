@@ -64,8 +64,10 @@ public class CaesarCipherApp {
 		return i;
 	}
 
+	/**
+	 * Get a string from the user to encrypt and call the crypt method to do the encryption
+	 */
 	public static void encryptString() {
-
 		String inputString;
 
 		System.out.println("Please enter some text to encrypt (140 characters max)");
@@ -85,6 +87,10 @@ public class CaesarCipherApp {
 		System.out.println();
 	}
 
+	/**
+	 * Get a string from the user to decrypt and call the crypt method with the shifvalue
+	 * inverted to do the descryption
+	 */
 	public static void decryptString() {
 		String inputString;
 
@@ -106,6 +112,12 @@ public class CaesarCipherApp {
 
 	}
 
+	/**
+	 * General purpose encrypt/decrypt method
+	 * 
+	 * @param string to encrypt/decrypt
+	 * @param number of characters to shift up or down by
+	 */
 	private static void crypt(StringBuffer newString, int shift) {
 		char c;
 		for (int i = 0; i < newString.length(); ++i) {
@@ -123,6 +135,9 @@ public class CaesarCipherApp {
 		}
 	}
 
+	/**
+	 * Get a number from the user to use as the new shiftValue
+	 */
 	public static void setShiftValue() {
 		int newShift = 0;
 

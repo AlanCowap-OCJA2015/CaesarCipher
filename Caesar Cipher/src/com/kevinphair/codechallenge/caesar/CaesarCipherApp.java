@@ -3,33 +3,32 @@ package com.kevinphair.codechallenge.caesar;
 import java.util.Scanner;
 
 /**
+ * Create a Caesar cipher implementation which takes a string and either
+ * encrypts or decrypts it according to a user-specified shift value
+ * 
  * @author Kevin, James, Joe
- *
+ * @date 20 Jul 2015
  */
 public class CaesarCipherApp {
-
 	public static int shiftValue = 1;
-
 	public static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
-		mainloop:
-
-			while (true) {
-				switch (mainMenu()) {
-					case 1: System.out.println("Encrypt selected"); 
-					encryptString();
-					break;
-					case 2: System.out.println("Decrypt selected");
-					decryptString();
-					break;
-					case 3: System.out.println("Shift value selected");
-					setShiftValue();
-					break;
-					case 4: System.out.println("Program quitting. Thank you"); break mainloop;
-				};
-			}
+		while (true) {
+			switch (mainMenu()) {
+				case 1: System.out.println("Encrypt selected"); 
+				encryptString();
+				break;
+				case 2: System.out.println("Decrypt selected");
+				decryptString();
+				break;
+				case 3: System.out.println("Shift value selected");
+				setShiftValue();
+				break;
+				case 4: System.out.println("Program quitting. Thank you"); return;
+			};
+		}
 	}
 
 	/**
@@ -37,7 +36,6 @@ public class CaesarCipherApp {
 	 * @return option selected as integer
 	 */
 	public static int mainMenu() {
-
 		int i = 0;
 
 		System.out.println("Caesar Cipher");
@@ -58,7 +56,6 @@ public class CaesarCipherApp {
 				System.out.println("That was an invalid choice. Please try again.");
 			}
 		}
-
 		return i;
 	}
 
@@ -99,7 +96,6 @@ public class CaesarCipherApp {
 		}
 		System.out.println();
 		System.out.println();
-
 	}
 
 	/**
@@ -121,7 +117,6 @@ public class CaesarCipherApp {
 					c -= 95;
 				}
 				s.setCharAt(i, c);
-
 			}
 		}
 		return s.toString();
@@ -144,5 +139,4 @@ public class CaesarCipherApp {
 			shiftValue = newShift;
 		}
 	}
-
 }

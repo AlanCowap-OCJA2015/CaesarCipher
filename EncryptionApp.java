@@ -93,13 +93,16 @@ public class EncryptionApp {
 	//get shift magnitude form user
 	private int getShiftMagnitude() {
 		int mangitude = 0;
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter encryption magnitude: ");
 		do{
 			try{
-				mangitude = scan.nextInt();
+				String userInput= scan.nextLine();
 				mangitude = setDirection(mangitude);
+				
+				mangitude = Integer.parseInt(userInput);
 				break;
-				//int mangitude = Integer.parseInt(scan.nextLine());
 			} catch(NumberFormatException nfe){
 				System.out.print("Please enter a valid number ");
 			}

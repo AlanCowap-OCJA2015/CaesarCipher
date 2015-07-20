@@ -27,7 +27,7 @@ public class CaesarCipherApp {
 				setShiftValue();
 				break;
 				case 4: System.out.println("Program quitting. Thank you"); return;
-			};
+			}
 		}
 	}
 

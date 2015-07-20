@@ -23,11 +23,20 @@ public class CeasarCipher {
 		System.out.println("Encrypt...");
 		System.out.println(encrypt);
 
+		System.out.println("Press enter to decrypt");
+		try{
+			System.in.read();
+			
+		}catch(Exception e){
+			
+		}
+		
 		decryption = decrypt(encrypt);
 		System.out.println("Decrypt...");
 		System.out.println(decryption);
 	}
 
+	//Method to encrypt a given string
 	private static String encrypt(String plainText){
 		String encrypt = "";
 		for(int i = 0 ; i < plainText.length(); ++i){
@@ -45,6 +54,7 @@ public class CeasarCipher {
 		return encrypt;
 	}//end of encrypt
 
+	//Method to decrypt a given String
 	private static String decrypt(String encryption){
 		String decryption = "";
 		for(int i = 0; i < encryption.length(); ++i){

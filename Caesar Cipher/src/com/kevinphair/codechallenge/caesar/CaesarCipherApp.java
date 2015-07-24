@@ -17,16 +17,14 @@ public class CaesarCipherApp {
 
 		while (true) {
 			switch (mainMenu()) {
-				case 1: System.out.println("Encrypt selected"); 
-				encryptString();
-				break;
-				case 2: System.out.println("Decrypt selected");
-				decryptString();
-				break;
-				case 3: System.out.println("Shift value selected");
-				setShiftValue();
-				break;
-				case 4: System.out.println("Program quitting. Thank you"); return;
+				case 1: encryptString();
+						break;
+				case 2: decryptString();
+						break;
+				case 3: shiftValue = setShiftValue();
+						break;
+				case 4: System.out.println("\nProgram quitting. Thank you");
+						return;
 			}
 		}
 	}
@@ -63,16 +61,11 @@ public class CaesarCipherApp {
 	 * Get a string from the user to encrypt and call the crypt method to do the encryption
 	 */
 	public static void encryptString() {
-		String inputString;
+		
+		String inputString = getStringInput(scan, 140, "Please enter some text to encrypt (140 characters max)");
 
-		System.out.println("Please enter some text to encrypt (140 characters max)");
-		inputString = scan.nextLine();
-		inputString = scan.nextLine();
-
-		if (inputString.length() > 0 && inputString.length() <= 140) {
+		if (inputString.length() > 0) {
 			System.out.println("This encrypts to '" + crypt(inputString, shiftValue) + "'");
-		}else if(inputString.length() > 140){
-			System.out.println("The string is greater than the allowable length.");
 		}
 		System.out.println();
 		System.out.println();
@@ -83,16 +76,11 @@ public class CaesarCipherApp {
 	 * inverted to do the decryption
 	 */
 	public static void decryptString() {
-		String inputString;
+		
+		String inputString = getStringInput(scan, 140, "Please enter some text to decrypt (140 characters max)");
 
-		System.out.println("Please enter some text to decrypt (140 characters max)");
-		inputString = scan.nextLine();
-		inputString = scan.nextLine();
-
-		if (inputString.length() > 0 && inputString.length() <= 140) {
+		if (inputString.length() > 0) {
 			System.out.println("This decrypts to '" + crypt(inputString, -shiftValue) + "'");
-		}else if(inputString.length() > 140){
-			System.out.println("The string is greater than the allowable length.");
 		}
 		System.out.println();
 		System.out.println();
@@ -101,8 +89,10 @@ public class CaesarCipherApp {
 	/**
 	 * General purpose encrypt/decrypt method
 	 * 
-	 * @param string to encrypt/decrypt
+	 * @param string to process
 	 * @param number of characters to shift up or down by
+	 * 
+	 * @return the string after processing
 	 */
 	private static String crypt(String newString, int shift) {
 		StringBuffer s = new StringBuffer(newString);
@@ -123,9 +113,11 @@ public class CaesarCipherApp {
 	}
 
 	/**
-	 * Get a number from the user to use as the new shiftValue
+	 * Get a number from the user to use as the new shift value
+	 * 
+	 * @return the new value as an int 
 	 */
-	public static void setShiftValue() {
+	public static int setShiftValue() {
 		int newShift = 0;
 
 		System.out.println("Please enter the new shift value (from -94 to 94)");
@@ -134,9 +126,34 @@ public class CaesarCipherApp {
 		System.out.println("You entered " + newShift);
 		if (newShift == 0 || newShift > 94 || newShift < -94) {
 			System.out.println("That is not a valid shift value");
-
+			return shiftValue;
 		} else {
-			shiftValue = newShift;
+			return newShift;
+		}
+	}
+	
+	/**
+	 * Get a line of input from the user after prompting. Can limit to a maximum length 
+	 * 
+	 * @param reference to already open scanner object to use
+	 * @param maximum length of string (0 = no limit)
+	 * @param prompt to show the user before getting input
+	 * 
+	 * @return The string that was input
+	 */
+	public static String getStringInput(Scanner s, int maxLen, String prompt) {
+		String inputString = null;
+		
+		System.out.print(prompt);
+		// Clear the next line from the scanner if one is waiting
+		if (s.hasNextLine()) inputString = s.nextLine();
+		while (true) {
+			inputString = s.nextLine();
+			if ((inputString.length() > 140) && (maxLen > 0)) {
+				System.out.println("Input exceeds maximum length (" + maxLen + "), please try again.");
+			} else {
+				return inputString;
+			}
 		}
 	}
 }

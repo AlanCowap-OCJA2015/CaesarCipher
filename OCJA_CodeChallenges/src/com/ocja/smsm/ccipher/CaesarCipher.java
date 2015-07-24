@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author Sam, Seamus, Mubasher, Marie
+ * @author Sam, Seamus, Mubasher, Marie, Jenn
  *
  */
 public class CaesarCipher {
